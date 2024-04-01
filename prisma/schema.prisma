@@ -14,11 +14,11 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  username String @unique
-  imageUrl String @db.String(200)
-  externalUserId String @unique
-  bio String? @db.String(200)
+  id             String  @id @default(uuid())
+  username       String  @unique
+  imageUrl       String  @db.String(200)
+  externalUserId String  @unique
+  bio            String? @db.String(200)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,10 +1,15 @@
-import Navbar from './_components/navbar';
+import { Container } from './_components/container';
+import { Navbar } from './_components/navbar';
+import { Sidebar } from './_components/sidebar';
 
 const BrowseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
-      <div>{children}</div>
+      <div className='flex h-full pt-20'>
+        <Sidebar />
+        <Container>{children}</Container>
+      </div>
     </>
   );
 };
