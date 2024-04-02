@@ -44,12 +44,12 @@ export const UserAvatar = ({
           {username[0]}
           {username[username.length - 1]}
         </AvatarFallback>
-        {canShowBadge && (
-          <div className='absolute -bottom-3 left-1/2 transform -translate-x-1/2'>
-            <LiveBadge />
-          </div>
-        )}
       </Avatar>
+      {canShowBadge && (
+        <div className='absolute -bottom-3 left-1/2 transform -translate-x-1/2'>
+          <LiveBadge />
+        </div>
+      )}
     </div>
   );
 };
