@@ -1,4 +1,4 @@
-# Fullstack Twitch Clone
+# Next.js Twitch Clone
 
 <p align="center">
     <img src="public/twitch-clone.jpg" alt="twitch-clone-image" />
