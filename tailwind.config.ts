@@ -1,6 +1,7 @@
+import { withUt } from 'uploadthing/tw';
 import type { Config } from 'tailwindcss';
 
-const config = {
+const config = withUt({
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -58,7 +59,7 @@ const config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      keyframes: {
+      /* keyframes: {
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -71,10 +72,10 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-      },
+      }, */
     },
   },
   plugins: [require('tailwindcss-animate')],
-} satisfies Config;
+}) satisfies Config;
 
 export default config;
