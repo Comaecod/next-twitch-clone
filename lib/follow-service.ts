@@ -1,40 +1,6 @@
 import { getSelf } from './auth-service';
 import { db } from './db';
 
-export const getFollowedUsers = async () => {
-  try {
-    const self = await getSelf();
-
-    const followedUsers = db.follow.findMany({
-      where: {
-        followerId: self.id,
-        following: {
-          blocking: {
-            none: {
-              blockedId: self.id,
-            },
-          },
-        },
-      },
-      include: {
-        following: {
-          include: {
-            stream: {
-              select: {
-                isLive: true,
-              },
-            },
-          },
-        },
-      },
-    });
-
-    return followedUsers;
-  } catch (error) {
-    return [];
-  }
-};
-
 export const isFollowingUser = async (id: string) => {
   try {
     const self = await getSelf();
@@ -59,7 +25,7 @@ export const isFollowingUser = async (id: string) => {
     });
 
     return !!existingFollow;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
@@ -87,7 +53,7 @@ export const followUser = async (id: string) => {
   });
 
   if (existingFollow) {
-    throw new Error('ALready following');
+    throw new Error('Already following');
   }
 
   const follow = await db.follow.create({
@@ -142,4 +108,38 @@ export const unFollowUser = async (id: string) => {
   });
 
   return follow;
+};
+
+export const getFollowedUsers = async () => {
+  try {
+    const self = await getSelf();
+
+    const followedUsers = await db.follow.findMany({
+      where: {
+        followerId: self.id,
+        following: {
+          blocking: {
+            none: {
+              blockedId: self.id,
+            },
+          },
+        },
+      },
+      include: {
+        following: {
+          include: {
+            stream: {
+              select: {
+                isLive: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return followedUsers;
+  } catch {
+    return [];
+  }
 };
