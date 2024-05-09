@@ -42,7 +42,7 @@ const ChatPage = async () => {
       </div>
       <div className='space-y-4'>
         {settings.map((setting) => (
-          <ToggleCard {...setting} />
+          <ToggleCard {...setting} key={setting.key} />
         ))}
       </div>
     </div>
